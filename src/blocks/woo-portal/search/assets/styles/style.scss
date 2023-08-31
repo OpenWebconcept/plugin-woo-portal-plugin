@@ -1,0 +1,31 @@
+@import url(https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900&amp;display=swap);
+@import url(https://unpkg.com/@vuepic/vue-datepicker@latest/dist/main.css);
+
+:root {
+	--owp-color: #000;
+	--owp-color-white: #fff;
+	--owp-color-search-button: #333333;
+	--owp-color-search-button-tint: #5c5c5c;
+	--owp-color-search-button-shade: linear-gradient( to top, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ) var(--owp-color-search-button);
+	--owp-color-primary: #CBF9B7;
+	--owp-color-secondary: #F9E9B7;
+	--owp-color-tertiary: #DDB7FA;
+	--owp-color-primary-tint: #CDFAB7;
+    --owp-color-secondary-tint: #2C6DBC;
+	--owp-search-color-gray: #333333;
+	--owp-search-color-gray-2: #D2D2D2;
+	--owp-search-color-gray-3: #828282;
+	--owp-search-font-family: "Inter", sans-serif;
+	--owp-search-radius: 4px;
+	--owp-search-inline-gap: 24px;
+	--owp-search-container-width: 1360px;
+	--owp-search-focus: 2px dashed var(--owp-color-search-button);
+	--owp-search-layout: "aside header" "aside results" "aside pagination";
+	--owp-search-columns: 1fr;
+	--owp-search-background: linear-gradient( to top, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85) ) var(--owp-color-search-button-tint);
+	--owp-search-background-opacity: linear-gradient( to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95) ) var(--owp-color-search-button-tint);
+	--owp-search-border-opacity: rgba(0 0 0 / 0.2);
+	--owp-search-box-shadow: 0 3px 6px rgba(4 50 89 / 0.15);
+	--owp-search-color-quaternary: #2C6DBC;
+	--owp-search-color-tertiary: #248641;
+}

@@ -1,0 +1,174 @@
+# Copyright (C) 2023 Acato
+# This file is distributed under the same license as the Open Web Concept Blocks plugin.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WOO Portal Plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-portal-plugin\n"
+"POT-Creation-Date: 2023-06-19 15:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.1\n"
+"X-Domain: woo-portal-plugin\n"
+
+#. Plugin Name of the plugin
+msgid "WOO Portal Plugin"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://openwebconcept.nl/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Adds WOO Portal Blocks to the Gutenberg editor."
+msgstr ""
+
+#. Author of the plugin
+msgid "Acato"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.acato.nl"
+msgstr ""
+
+#: includes/class-customizer.php:51
+msgctxt "Customizer color label"
+msgid "Text color"
+msgstr ""
+
+#: includes/class-customizer.php:55
+msgctxt "Customizer color label"
+msgid "Primary color"
+msgstr ""
+
+#: includes/class-customizer.php:59
+msgctxt "Customizer color label"
+msgid "Secondary color"
+msgstr ""
+
+#: includes/class-customizer.php:72
+msgctxt "Customizer section title"
+msgid "WOO Portal Colors"
+msgstr ""
+
+#: includes/class-customizer.php:73
+msgctxt "Customizer section description"
+msgid "Define the colors used within the WOO Portal & Theme."
+msgstr ""
+
+#: includes/class-customizer.php:376
+msgctxt "Dashboard message"
+msgid "A CSS file has been successfully generated."
+msgstr ""
+
+#. translators: %1$s The imploded allowed_roles, %2$s the last of the allowed_roles.
+#: includes/class-customizer.php:385
+msgctxt "Dashboard role separator"
+msgid "%1$s or %2$s"
+msgstr ""
+
+#. translators: %1%s The plugin name, %2$s Imploded user roles.
+#: includes/class-customizer.php:394
+msgctxt "Dashboard message"
+msgid "No CSS file has been generated yet, so the styling of the %1$s may not be displayed correctly. Contact a user with one of the following roles: %2$s"
+msgstr ""
+
+#. translators: %1$s The plugin name, %2$s The Customizer URL.
+#: includes/class-customizer.php:415
+msgctxt "Dashboard message"
+msgid "No CSS file has been generated yet, so the styling of the %1$s may not be displayed correctly. Go to the <a href=\"%2$s\">Customizer</a> or generate the CSS file using the button below."
+msgstr ""
+
+#: includes/class-customizer.php:421
+msgctxt "Dashboard message"
+msgid "Save Customizer"
+msgstr ""
+
+#: includes/frontend/class-frontend.php:61
+msgid "WOO Portal Blocks"
+msgstr ""
+
+#: src/blocks/woo-portal/search/assets/scripts/controls/woo-portal-image-reset-control.js:21
+msgctxt "Search: Control label"
+msgid "Reset image"
+msgstr ""
+
+#: src/blocks/woo-portal/search/assets/scripts/edit.js:45
+msgctxt "WOO Portal Search label"
+msgid "URL to rest-endpoint or Domain URL"
+msgstr ""
+
+#: src/blocks/woo-portal/search/assets/scripts/edit.js:58
+msgctxt "WOO Portal Search error"
+msgid "Invalid URL"
+msgstr ""
+
+#: src/blocks/woo-portal/search/assets/scripts/edit.js:64
+msgctxt "WOO Portal Search label"
+msgid "Title"
+msgstr ""
+
+#: src/blocks/woo-portal/search/assets/scripts/edit.js:69
+msgctxt "WOO Portal Search label"
+msgid "Excerpt"
+msgstr ""
+
+#: src/blocks/woo-portal/search/assets/scripts/edit.js:74
+msgctxt "WOO Portal Search label"
+msgid "Search-field Placeholder"
+msgstr ""
+
+#: src/blocks/woo-portal/search/assets/scripts/edit.js:80
+msgctxt "WOO Portal Search label"
+msgid "Results per page"
+msgstr ""
+
+#: src/editor/ncb-heading-tag-control/index.js:24
+msgctxt "denhaag/paragraph: ToolbarButton label"
+msgid "Set as heading %s"
+msgstr ""
+
+#: src/editor/ncb-heading-tag-control/index.js:25
+msgctxt "denhaag/paragraph: ToolbarButton label"
+msgid "Show as heading %s"
+msgstr ""
+
+#: src/editor/ncb-image-size-control.js:40
+#: src/editor/ncb-image-size-control.js:48
+msgctxt "NCB_ImageSizeControl label"
+msgid "Select image size"
+msgstr ""
+
+#: src/editor/ncb-link-control/assets/scripts/ncb-set-link-control.js:67
+msgctxt "NCB_SetLinkControl label"
+msgid "Add link"
+msgstr ""
+
+#: src/editor/ncb-link-control/assets/scripts/ncb-unset-link-control.js:19
+msgctxt "NCB_UnsetLinkControl label"
+msgid "Remove link"
+msgstr ""
+
+#: src/blocks/woo-portal/search/block.json
+msgctxt "block title"
+msgid "WOO Portal Search"
+msgstr ""
+
+#: src/blocks/woo-portal/search/block.json
+msgctxt "block description"
+msgid "Search filters"
+msgstr ""
+
+#: src/blocks/woo-portal/search/block.json
+msgctxt "block keyword"
+msgid "woo-portal"
+msgstr ""
+
+#: src/blocks/woo-portal/search/block.json
+msgctxt "block keyword"
+msgid "search"
+msgstr ""

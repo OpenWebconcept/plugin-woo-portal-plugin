@@ -1,0 +1,54 @@
+{
+    "$schema" : "https://schemas.wp.org/trunk/block.json",
+    "title" : "WOO Portal Search",
+    "description" : "Search filters",
+    "icon" : "search",
+    "name" : "woo-portal/search",
+    "category" : "woo-portal-plugin",
+    "attributes" : {
+        "rest_uri" : {
+            "type" : "string",
+            "default" : ""
+        },
+        "title" : {
+            "type" : "string",
+            "default" : ""
+        },
+        "excerpt" : {
+            "type" : "string",
+            "default" : ""
+        },
+        "placeholder" : {
+            "type" : "string",
+            "default" : ""
+        },
+        "image" : {
+            "type" : "number",
+            "default" : 0
+        },
+        "per_page" : {
+            "type" : "number",
+            "default" : 10
+        }
+    },
+    "style" : [
+        "woo-portal-woo-portal-search-block"
+    ],
+    "supports" : {
+        "align" : false,
+        "className" : false,
+        "customClassName" : false,
+        "html" : false,
+        "multiple" : false
+    },
+    "keywords" : [
+        "owc",
+        "openwebconcept",
+        "woo-portal",
+        "search"
+    ],
+    "viewScript" : [
+        "woo-portal-woo-portal-search-block"
+    ],
+    "version" : "1.0.0"
+}

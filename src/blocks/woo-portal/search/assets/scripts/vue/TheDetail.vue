@@ -198,6 +198,7 @@ export default {
     font-weight: 400;
     font-size: 18px;
     line-height: 170%;
+		margin: 0;
   }
 }
 
@@ -342,6 +343,14 @@ export default {
 
 .woo-portal-detail h2 {
   font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 170%;
+  margin-block-start: 0;
+  margin-block-end: 4px;
+}
+
+.woo-portal-detail__subtitle {
+  font-weight: 700;
   font-size: 1rem;
   line-height: 170%;
   margin-block-start: 0;
@@ -379,6 +388,7 @@ export default {
   text-decoration: none;
   width: fit-content;
 	font-weight: 700;
+	margin-bottom: 16px ;
   &:hover {
     background: var(--owp-color-search-button-tint);
   }
@@ -388,6 +398,9 @@ export default {
   &:disabled {
     background: #ccc;
   }
+	svg {
+		margin-right: 12px;
+	}
 }
 
 .woo-portal-detail__columns {

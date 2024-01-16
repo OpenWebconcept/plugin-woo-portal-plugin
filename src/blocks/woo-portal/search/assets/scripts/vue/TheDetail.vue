@@ -81,6 +81,8 @@ export default {
       this.detail = null;
       window.history.replaceState({}, this.pageTitle, "/" + "");
 			document.title = this.pageTitle;
+			document.querySelector('.woo-portal-search__hero').removeAttribute( 'aria-hidden');
+			document.querySelector('.woo-portal-search-container').removeAttribute( 'aria-hidden');
     },
 
     openDetail(restUrl) {
@@ -113,6 +115,8 @@ export default {
               );
             });
 				}
+			document.querySelector('.woo-portal-search__hero').setAttribute( 'aria-hidden', 'true' );
+			document.querySelector('.woo-portal-search-container').setAttribute( 'aria-hidden', 'true' );
     },
 
     typeClass(type) {

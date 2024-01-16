@@ -425,17 +425,13 @@ watch(
 	padding-block: 48px;
 }
 
-#main-content:has(.woo-portal-detail-wrapper), main:has(.woo-portal-detail-wrapper) {
-  .woo-portal-search__hero, .woo-portal-search-container {
-    display: none;
-  }
-}
 
-#main-content .woo-portal-detail-wrapper + .woo-portal-search__hero, #main-content .woo-portal-detail-wrapper + .woo-portal-search__hero + .woo-portal-search-container,
-main .woo-portal-detail-wrapper + .woo-portal-search__hero, main .woo-portal-detail-wrapper + .woo-portal-search__hero + .woo-portal-search-container
-{
-  display: none;
-}
+  .woo-portal-search__hero, .woo-portal-search-container {
+		&[aria-hidden='true'] {
+			display:none;
+		}
+  }
+
 
 @container (min-width: 990px) {
   .woo-portal-search-container {

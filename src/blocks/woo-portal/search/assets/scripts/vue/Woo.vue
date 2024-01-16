@@ -59,7 +59,8 @@
 			<a
 					:href="detail.URL_informatieverzoek"
 					class="woo-portal-detail__download"
-					download
+					:download="fileName(detail.URL_informatieverzoek)"
+					target="_blank"
 			>
 				<div class="woo-portal-detail__download-circle">
 					<svg
@@ -123,7 +124,8 @@
 			<a
 					:href="detail.URL_inventarisatielijst"
 					class="woo-portal-detail__download"
-					download
+					:download="fileName(detail.URL_inventarisatielijst)"
+					target="_blank"
 			>
 				<div class="woo-portal-detail__download-circle">
 					<svg
@@ -187,7 +189,8 @@
 			<a
 					:href="detail.URL_besluit"
 					class="woo-portal-detail__download"
-					download
+					:download="fileName(detail.URL_besluit)"
+					target="_blank"
 			>
 				<div class="woo-portal-detail__download-circle">
 					<svg
@@ -239,7 +242,8 @@
             v-for="download in detail.Bijlagen"
             :href="download.URL_Bijlage"
             class="woo-portal-detail__download"
-            download
+						:download="fileName(download.URL_Bijlage)"
+						target="_blank"
         >
           <div class="woo-portal-detail__download-circle">
             <svg
@@ -400,8 +404,10 @@ export default {
     },
 
     themeNames(themes) {
-      return themes.map((obj) => Object.values(obj)).join(", ");
-    },
-  }
+      return themes.map((obj) => {
+				return Object.values(obj).map(value => ' ' + value)
+			}).join(',');
+  	}
+	}
 }
 </script>

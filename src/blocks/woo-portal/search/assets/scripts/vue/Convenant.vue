@@ -190,9 +190,11 @@ export default {
         day: "numeric"
       });
     },
-    themeNames(themes) {
-      return themes.map((obj) => Object.values(obj)).join(", ");
-    },
+		themeNames(themes) {
+			return themes.map((obj) => {
+				return Object.values(obj).map(value => ' ' + value)
+			}).join(',');
+		},
     parties(parties) {
       return parties.map((obj) => Object.values(obj)).join(", ");
     },

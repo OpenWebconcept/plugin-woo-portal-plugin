@@ -29,7 +29,7 @@ const filteredDownloads = computed(() => {
     return {
       title: item.Titel_Bijlage.replace( new RegExp( props.searchTerm, "gi" ), `<strong>${ props.searchTerm }</strong>` ),
       url: item.URL_Bijlage,
-      extension: extension.toLowerCase()
+      extension: extension ? '.' + extension.toLowerCase() : ''
     }
   } );
 });

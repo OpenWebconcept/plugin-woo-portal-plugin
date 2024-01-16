@@ -104,4 +104,8 @@ NCB_build_client( 'src/client', 'client' );
 
 mix.setPublicPath( 'build' )
 	.version()
-	.sourceMaps();
+	.sourceMaps()
+	.options( {
+		cssnano: { preset: "default" },
+	} );
+

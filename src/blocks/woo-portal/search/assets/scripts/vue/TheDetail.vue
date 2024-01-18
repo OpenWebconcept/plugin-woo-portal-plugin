@@ -81,6 +81,8 @@ export default {
       this.detail = null;
       window.history.replaceState({}, this.pageTitle, "/" + "");
 			document.title = this.pageTitle;
+			document.querySelector('.woo-portal-search__hero').removeAttribute( 'aria-hidden');
+			document.querySelector('.woo-portal-search-container').removeAttribute( 'aria-hidden');
     },
 
     openDetail(restUrl) {
@@ -113,6 +115,8 @@ export default {
               );
             });
 				}
+			document.querySelector('.woo-portal-search__hero').setAttribute( 'aria-hidden', 'true' );
+			document.querySelector('.woo-portal-search-container').setAttribute( 'aria-hidden', 'true' );
     },
 
     typeClass(type) {
@@ -198,6 +202,7 @@ export default {
     font-weight: 400;
     font-size: 18px;
     line-height: 170%;
+		margin: 0;
   }
 }
 
@@ -262,6 +267,7 @@ export default {
   white-space: normal;
   &.themas, &.partijen {
     display: table-caption;
+		width: 155px;
   }
 }
 
@@ -283,7 +289,7 @@ export default {
   grid-template-areas: "download-icon download-title" "download-icon download-meta";
   grid-template-columns: 64px calc(100% - 64px);
 
-  padding-block: 24px;
+  padding-block: 16px;
   padding-inline: 16px;
   column-gap: 24px;
   row-gap: 0;
@@ -308,14 +314,14 @@ export default {
 .woo-portal-detail__download-circle {
   grid-area: download-icon;
   aspect-ratio: 1;
-  background: var(--owp-color-search-button);
+  background: #000;
   clip-path: circle(50%);
   display: grid;
   place-items: center;
   width: 64px;
   height: auto;
   svg, svg path {
-    stroke: var(--owp-color-search-button-text-color);
+    stroke: #fff;
   }
 }
 
@@ -323,11 +329,11 @@ export default {
   outline: 2px dashed #000;
 }
 .woo-portal-detail__download:hover svg {
-  transform: translateY(-2px);
+  transform: translateY( 6px);
 }
 
 .woo-portal-detail__download:active svg {
-  transform: translateY(2px);
+  transform: translateY(-4px);
 }
 
 .woo-portal-detail__title {
@@ -341,6 +347,14 @@ export default {
 }
 
 .woo-portal-detail h2 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 170%;
+  margin-block-start: 0;
+  margin-block-end: 4px;
+}
+
+.woo-portal-detail__subtitle {
   font-weight: 700;
   font-size: 1rem;
   line-height: 170%;
@@ -367,8 +381,8 @@ export default {
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
-  color: var(--owp-color-search-button-text-color);
-  background: var(--owp-color-search-button);
+  color: #fff;
+  background: #000;
   border: 0;
   border-radius: 3px;
   display: flex;
@@ -378,16 +392,19 @@ export default {
   padding: 8px 16px;
   text-decoration: none;
   width: fit-content;
-	font-weight: 700;
+	margin-bottom: 16px ;
   &:hover {
-    background: var(--owp-color-search-button-tint);
+    background: #626262;
   }
   &:active, &:focus {
-    background: var(--owp-color-search-button-shade);
+    background: #626262;
   }
   &:disabled {
     background: #ccc;
   }
+	svg {
+		margin-right: 12px;
+	}
 }
 
 .woo-portal-detail__columns {

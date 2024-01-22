@@ -8,7 +8,11 @@
           v-html="detail.Titel"
       />
     </div>
-
+		<!-- Kenmerk -->
+		<div v-if="detail.ID">
+			<h2 class="woo-portal-detail__subtitle">Kenmerk</h2>
+			<p v-html="detail.ID" />
+		</div>
     <!-- Verzoek + Besluit -->
     <div class="woo-portal-detail__columns">
       <div class="woo-portal-detail__column">
@@ -301,15 +305,9 @@
           :class="typeClass"
       />
 
-      <dt v-if="detail.Object_ID">Referentienummer</dt>
-      <dd v-if="detail.Object_ID" v-html="detail.Object_ID"></dd>
+      <dt v-if="detail.Ontvanger_informatieverzoek">Ontvanger informatieverzoek</dt>
+      <dd v-if="detail.Ontvanger_informatieverzoek" v-html="detail.Ontvanger_informatieverzoek"></dd>
 
-      <dt v-if="detail.Behandelstatus">Behandelstatus</dt>
-      <dd v-if="detail.Behandelstatus" v-html="detail.Behandelstatus"></dd>
-
-      <dt v-if="detail.Behandelend_bestuursorgaan">
-        Behandelend bestuursorgaan
-      </dt>
       <dd
           v-if="detail.Behandelend_bestuursorgaan"
           v-html="detail.Behandelend_bestuursorgaan"
@@ -324,13 +322,6 @@
 
       <dt v-if="detail.Themas">Thema’s</dt>
       <dd v-if="detail.Themas" v-html="themeNames(detail.Themas)" class="themas"></dd>
-      <dt v-if="detail.Besluitdatum">Datum ondertekening</dt>
-      <dd
-          v-if="detail.Besluitdatum"
-          v-html="dateReadable(detail.Besluitdatum)"
-      ></dd>
-      <dt v-if="detail.Partijen">Partijen</dt>
-      <dd v-if="detail.Partijen" v-html="detail.Partijen"></dd>
     </dl>
   </aside>
 </template>

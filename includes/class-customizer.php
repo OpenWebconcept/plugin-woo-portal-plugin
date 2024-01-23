@@ -278,10 +278,10 @@ class Customizer {
 		}
 
 		if ( 'base' === $variant ) {
-			return "--owp-$property:$value;";
+			return "--owp-$property:$value!important;";
 		}
 
-		return "--owp-$property-$variant:$value;";
+		return "--owp-$property-$variant:$value!important;";
 	}
 
 

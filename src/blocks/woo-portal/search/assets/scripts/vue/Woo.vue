@@ -235,6 +235,54 @@
 			</a>
 		</div>
 
+		<!-- Postcode gebied + Geografisch gebied -->
+		<div class="woo-portal-detail__columns">
+			<div class="woo-portal-detail__column">
+				<h2 class="woo-portal-detail__subtitle">Postcodegebied</h2>
+				<time
+						v-if="detail.Postcodegebied"
+						v-html="detail.Postcodegebied"
+				/>
+			</div>
+
+			<div class="woo-portal-detail__column">
+				<h2 class="woo-portal-detail__subtitle">Geografisch gebied</h2>
+				<time
+						v-if="detail.Geografisch_gebied"
+						v-html="detail.Geografisch_gebied"
+				/>
+			</div>
+		</div>
+
+		<!-- Adres + Geografisch gebied -->
+		<h2 style="margin-bottom: -35px;">Adres</h2>
+		<div class="woo-portal-detail__columns">
+			<div class="woo-portal-detail__column">
+				<h3 class="woo-portal-detail__subtitle">Staat + Huisnummer</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Adres"
+						v-html="detail.Adres.Adres"
+				/>
+				<h3 class="woo-portal-detail__subtitle">Stad</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Stad"
+						v-html="detail.Adres.Stad"
+				/>
+			</div>
+
+			<div class="woo-portal-detail__column">
+				<h3 class="woo-portal-detail__subtitle">Postcode</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Postcode"
+						v-html="detail.Adres.Postcode"
+				/>
+			</div>
+		</div>
+
+		<div v-if="detail.Geografische_positie">
+			<h2>Geografische positie</h2>
+			<div  id="map" class="woo-portal-detail__map"></div>
+		</div>
 
     <!-- Downloads -->
     <div>
@@ -351,6 +399,17 @@ export default {
 		if ( this.detail.Titel.length > 0 ) {
 			document.title += ' - ' + this.detail.Titel;
 		}
+		if ( this.detail.Geografische_positie ) {
+			this.addScriptToHead('https://unpkg.com/leaflet@1.7.1/dist/leaflet.js')
+			this.addStylesheetToHead('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css')
+		}
+	},
+	mounted() {
+		setTimeout(() => {
+			if( document.getElementById('map') && this.detail.Geografische_positie ){
+				this.initmap(this.detail.Geografische_positie);
+			}
+		},500 )
 	},
 	methods: {
 		fileName(url) {
@@ -398,7 +457,41 @@ export default {
       return themes.map((obj) => {
 				return Object.values(obj).map(value => ' ' + value)
 			}).join(',');
-  	}
+  	},
+		//leaflet script for openstreetmap
+		addScriptToHead(src) {
+			const script = document.createElement('script');
+			script.src= src;
+			script.id= 'leaflet-js';
+			script.async= true;
+			document.head.appendChild(script);
+		},
+		//leaflet stylesheet for openstreetmap
+		addStylesheetToHead(src) {
+			const link = document.createElement('link');
+			link.rel= 'stylesheet';
+			link.id= 'leaflet_style-css';
+			link.href= src;
+			link.media= 'all';
+			document.head.appendChild(link);
+		},
+		initmap( location ) {
+			let mapOptions = {
+				center: [location.Lattitude, location.Longitude],
+				zoom:13
+			}
+			let map = new L.map('map' , mapOptions);
+			let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+			map.addLayer(layer);
+			let marker = new L.Marker( [location.Lattitude, location.Longitude] );
+			marker.addTo(map);
+		},
 	}
 }
 </script>
+<style lang="scss" scoped>
+#map{
+	height: 222px;
+	width: 100%;
+}
+</style>

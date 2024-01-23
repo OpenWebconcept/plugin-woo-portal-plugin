@@ -113,8 +113,8 @@
           :class="typeClass"
       />
 
-      <dt v-if="detail.Object_ID">Referentienummer</dt>
-      <dd v-if="detail.Object_ID" v-html="detail.Object_ID"></dd>
+      <dt v-if="detail.ID">Zaaknummer</dt>
+      <dd v-if="detail.ID" v-html="detail.ID"></dd>
 
       <dt v-if="detail.Beleidsterrein">Beleidsterrein</dt>
       <dd v-if="detail.Beleidsterrein" v-html="detail.Beleidsterrein"></dd>

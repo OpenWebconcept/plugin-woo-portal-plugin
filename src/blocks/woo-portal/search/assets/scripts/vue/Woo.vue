@@ -8,7 +8,11 @@
           v-html="detail.Titel"
       />
     </div>
-
+		<!-- Kenmerk -->
+		<div v-if="detail.ID">
+			<h2 class="woo-portal-detail__subtitle">Kenmerk</h2>
+			<p v-html="detail.ID" />
+		</div>
     <!-- Verzoek + Besluit -->
     <div class="woo-portal-detail__columns">
       <div class="woo-portal-detail__column">
@@ -231,6 +235,54 @@
 			</a>
 		</div>
 
+		<!-- Postcode gebied + Geografisch gebied -->
+		<div class="woo-portal-detail__columns">
+			<div class="woo-portal-detail__column">
+				<h2 class="woo-portal-detail__subtitle">Postcodegebied</h2>
+				<time
+						v-if="detail.Postcodegebied"
+						v-html="detail.Postcodegebied"
+				/>
+			</div>
+
+			<div class="woo-portal-detail__column">
+				<h2 class="woo-portal-detail__subtitle">Geografisch gebied</h2>
+				<time
+						v-if="detail.Geografisch_gebied"
+						v-html="detail.Geografisch_gebied"
+				/>
+			</div>
+		</div>
+
+		<!-- Adres + Geografisch gebied -->
+		<h2 style="margin-bottom: -35px;">Adres</h2>
+		<div class="woo-portal-detail__columns">
+			<div class="woo-portal-detail__column">
+				<h3 class="woo-portal-detail__subtitle">Staat + Huisnummer</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Adres"
+						v-html="detail.Adres.Adres"
+				/>
+				<h3 class="woo-portal-detail__subtitle">Stad</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Stad"
+						v-html="detail.Adres.Stad"
+				/>
+			</div>
+
+			<div class="woo-portal-detail__column">
+				<h3 class="woo-portal-detail__subtitle">Postcode</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Postcode"
+						v-html="detail.Adres.Postcode"
+				/>
+			</div>
+		</div>
+
+		<div v-if="detail.Geografische_positie">
+			<h2>Geografische positie</h2>
+			<div  id="map" class="woo-portal-detail__map"></div>
+		</div>
 
     <!-- Downloads -->
     <div>
@@ -301,15 +353,9 @@
           :class="typeClass"
       />
 
-      <dt v-if="detail.Object_ID">Referentienummer</dt>
-      <dd v-if="detail.Object_ID" v-html="detail.Object_ID"></dd>
+      <dt v-if="detail.Ontvanger_informatieverzoek">Ontvanger informatieverzoek</dt>
+      <dd v-if="detail.Ontvanger_informatieverzoek" v-html="detail.Ontvanger_informatieverzoek"></dd>
 
-      <dt v-if="detail.Behandelstatus">Behandelstatus</dt>
-      <dd v-if="detail.Behandelstatus" v-html="detail.Behandelstatus"></dd>
-
-      <dt v-if="detail.Behandelend_bestuursorgaan">
-        Behandelend bestuursorgaan
-      </dt>
       <dd
           v-if="detail.Behandelend_bestuursorgaan"
           v-html="detail.Behandelend_bestuursorgaan"
@@ -324,13 +370,6 @@
 
       <dt v-if="detail.Themas">Thema’s</dt>
       <dd v-if="detail.Themas" v-html="themeNames(detail.Themas)" class="themas"></dd>
-      <dt v-if="detail.Besluitdatum">Datum ondertekening</dt>
-      <dd
-          v-if="detail.Besluitdatum"
-          v-html="dateReadable(detail.Besluitdatum)"
-      ></dd>
-      <dt v-if="detail.Partijen">Partijen</dt>
-      <dd v-if="detail.Partijen" v-html="detail.Partijen"></dd>
     </dl>
   </aside>
 </template>
@@ -360,6 +399,17 @@ export default {
 		if ( this.detail.Titel.length > 0 ) {
 			document.title += ' - ' + this.detail.Titel;
 		}
+		if ( this.detail.Geografische_positie ) {
+			this.addScriptToHead('https://unpkg.com/leaflet@1.7.1/dist/leaflet.js')
+			this.addStylesheetToHead('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css')
+		}
+	},
+	mounted() {
+		setTimeout(() => {
+			if( document.getElementById('map') && this.detail.Geografische_positie ){
+				this.initmap(this.detail.Geografische_positie);
+			}
+		},500 )
 	},
 	methods: {
 		fileName(url) {
@@ -407,7 +457,41 @@ export default {
       return themes.map((obj) => {
 				return Object.values(obj).map(value => ' ' + value)
 			}).join(',');
-  	}
+  	},
+		//leaflet script for openstreetmap
+		addScriptToHead(src) {
+			const script = document.createElement('script');
+			script.src= src;
+			script.id= 'leaflet-js';
+			script.async= true;
+			document.head.appendChild(script);
+		},
+		//leaflet stylesheet for openstreetmap
+		addStylesheetToHead(src) {
+			const link = document.createElement('link');
+			link.rel= 'stylesheet';
+			link.id= 'leaflet_style-css';
+			link.href= src;
+			link.media= 'all';
+			document.head.appendChild(link);
+		},
+		initmap( location ) {
+			let mapOptions = {
+				center: [location.Lattitude, location.Longitude],
+				zoom:13
+			}
+			let map = new L.map('map' , mapOptions);
+			let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+			map.addLayer(layer);
+			let marker = new L.Marker( [location.Lattitude, location.Longitude] );
+			marker.addTo(map);
+		},
 	}
 }
 </script>
+<style lang="scss" scoped>
+#map{
+	height: 222px;
+	width: 100%;
+}
+</style>

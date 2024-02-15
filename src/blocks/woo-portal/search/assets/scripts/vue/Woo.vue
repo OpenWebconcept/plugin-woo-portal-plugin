@@ -479,13 +479,13 @@ export default {
 		},
 		initmap( location ) {
 			let mapOptions = {
-				center: [location.Lattitude, location.Longitude],
+				center: [location.Latitude, location.Longitude],
 				zoom:13
 			}
 			let map = new L.map('map' , mapOptions);
 			let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 			map.addLayer(layer);
-			let marker = new L.Marker( [location.Lattitude, location.Longitude] );
+			let marker = new L.Marker( [location.Latitude, location.Longitude] );
 			marker.addTo(map);
 		},
 	}

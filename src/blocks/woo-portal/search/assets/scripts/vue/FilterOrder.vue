@@ -23,9 +23,9 @@ const onChange = () => {
 	<label :for="id" class="sr-only">Sorteer op</label>
 	<select :id="id" @change="onChange" v-model="selected" class="woo-portal-search__select" aria-label="Sorteer zoekresultaten">
 		<option value="asc,relevance">
-			Sorteren op minst relevanste eerst
+			Sorteren op minst relevantste eerst
 		</option>
-		<option value="desc,relevance">Sorteren op relevanste eerst</option>
+		<option value="desc,relevance">Sorteren op relevantste eerst</option>
 		<option value="asc,date">Sorteren op datum nieuwste eerst</option>
 		<option value="desc,date">Sorteren op datum oudste eerst</option>
 		<option value="asc,title">Sorteren op alfabetisch oplopend</option>
@@ -41,8 +41,7 @@ const onChange = () => {
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 1;
-	padding-inline-end: 1.125em;
-	text-align: right;
+	text-align: left;
   max-width: 100%;
 	.woo-portal-search__fieldset & {
 		background: var(--owp-color-white);

@@ -98,8 +98,7 @@ const postTypeLabel = computed(() => {
 	if (!item) {
 		return null;
 	}
-
-	return item.label;
+	return 'OpenWOO' === item.label ? 'Woo-verzoek' : item.label;
 });
 
 /**

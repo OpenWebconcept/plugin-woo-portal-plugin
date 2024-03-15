@@ -61,7 +61,7 @@ const onChange = () => {
 				v-model="selected"
 				@change="onChange"
 			/>
-			{{ filter.label }}
+			{{ 'OpenWOO' === filter.label ? 'Woo-verzoek' : filter.label }}
 		</label>
 	</fieldset>
 </template>

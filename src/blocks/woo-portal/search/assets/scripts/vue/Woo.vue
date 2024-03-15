@@ -25,7 +25,7 @@
       </div>
 
       <div class="woo-portal-detail__column">
-        <h2 class="woo-portal-detail__subtitle">Besluitdatum (date)</h2>
+        <h2 class="woo-portal-detail__subtitle">Besluitdatum</h2>
         <time
             v-if="detail.Besluitdatum"
             v-html="dateReadable(detail.Besluitdatum)"

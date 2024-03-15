@@ -23,11 +23,11 @@ const props = defineProps({
 		type: String,
 		default: null,
 	},
-	parties: {
-		type: Object,
-		default: [],
+	decree: {
+		type: String,
+		default: null,
 	},
-	downloads: {
+	parties: {
 		type: Object,
 		default: [],
 	},
@@ -171,7 +171,7 @@ function formatDate(date) {
 				:datetime="date"
 			/>
 		</div>
-		<TheDownloads :downloads="downloads" />
+		<TheDownloads :decree="decree" />
 	</article>
 </template>
 

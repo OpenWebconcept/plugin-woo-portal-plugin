@@ -355,6 +355,7 @@ watch(
 				:date="result.Datum"
 				:link="result._links.self"
 				:excerpt="result.Samenvatting"
+				:decree="result.Bijlage_besluit"
 				:parties="
 					result.hasOwnProperty('Partijen') ? result.Partijen : []
 				"

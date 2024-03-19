@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps} from "vue";
+import {computed, defineProps} from "vue";
 
 const props = defineProps({
 	downloads: {
@@ -41,10 +41,10 @@ const filteredDownloads = computed(() => {
 			<a :href="file.url" class="woo-portal-download__link">
 				<svg
 						aria-hidden="true"
-						width="24"
+						fill="none"
 						height="24"
 						viewBox="0 0 24 24"
-						fill="none"
+						width="24"
 						xmlns="http://www.w3.org/2000/svg"
 				>
 					<path
@@ -52,8 +52,8 @@ const filteredDownloads = computed(() => {
 							fill="black"
 					/>
 				</svg>
-				<span class="woo-portal-download__title" v-if="file.title" v-html="file.title"/>
-				<span class="woo-portal-download__extension" v-if="file.extension" v-html="file.extension"/>
+				<span v-if="file.title" class="woo-portal-download__title" v-html="file.title"/>
+				<span v-if="file.extension" class="woo-portal-download__extension" v-html="file.extension"/>
 			</a>
 		</li>
 

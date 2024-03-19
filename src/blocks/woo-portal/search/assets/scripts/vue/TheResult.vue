@@ -1,6 +1,7 @@
 <script setup>
 import { computed, defineProps } from 'vue';
-import TheDownloads from './TheDownloads.vue';
+// import TheDownloads from './TheDownloads.vue';
+import TheDecree from "./TheDecree.vue";
 
 const props = defineProps({
 	type: {
@@ -26,6 +27,10 @@ const props = defineProps({
 	decree: {
 		type: String,
 		default: null,
+	},
+	downloads: {
+		type: Object,
+		default: {},
 	},
 	parties: {
 		type: Object,
@@ -171,7 +176,7 @@ function formatDate(date) {
 				:datetime="date"
 			/>
 		</div>
-		<TheDownloads :decree="decree" />
+		<TheDecree :decree="decree" />
 	</article>
 </template>
 

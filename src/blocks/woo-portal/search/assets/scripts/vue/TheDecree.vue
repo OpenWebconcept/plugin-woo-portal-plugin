@@ -2,9 +2,9 @@
 import {computed, defineProps} from "vue";
 
 const props = defineProps({
-	downloads: {
-		type: Object,
-		default: {}
+	decree: {
+		type: String,
+		default: ''
 	},
 	searchTerm: {
 		type: String,
@@ -16,29 +16,26 @@ const props = defineProps({
  * Filter based on searchTerm.
  * @return {*|*[]}
  */
-const filteredDownloads = computed(() => {
-	// if ( ! props.searchTerm ) {
-	//   return [];
-	// }
+const filteredDecree = computed(() => {
+	if ( ! props.decree ) {
+		return [];
+	}
 
-	const items = props.downloads.filter(item => item.URL_Bijlage !== false && item.Titel_Bijlage !== false && item.Titel_Bijlage.toLowerCase().includes(props.searchTerm.toLowerCase()));
+	const title = props.decree.substring(props.decree.lastIndexOf('/') + 1).split('.')[0];
+	const extension = props.decree.split( '.' ).pop();
 
-	return items.map(item => {
-		const extension = item.URL_Bijlage.split('.').pop();
-
-		return {
-			title: item.Titel_Bijlage.replace(new RegExp(props.searchTerm, "gi"), `<strong>${props.searchTerm}</strong>`),
-			url: item.URL_Bijlage,
-			extension: extension ? '.' + extension.toLowerCase() : ''
-		}
-	});
+	return {
+		title: title.replace( new RegExp( props.searchTerm, "gi" ), `<strong>${props.searchTerm}</strong>`),
+		url: props.decree,
+		extension: extension ? '.' + extension.toLowerCase() : ''
+	}
 });
 </script>
 
 <template v-cloak>
-	<ul v-if="filteredDownloads.length > 0" class="woo-portal-downloads">
-		<li v-for="(file, index) in filteredDownloads" :index="index" class="woo-portal-download">
-			<a :href="file.url" class="woo-portal-download__link">
+	<ul v-if="!! filteredDecree.url" class="woo-portal-downloads">
+		<li class="woo-portal-download">
+			<a :href="filteredDecree.url" class="woo-portal-download__link">
 				<svg
 						aria-hidden="true"
 						fill="none"
@@ -52,11 +49,10 @@ const filteredDownloads = computed(() => {
 							fill="black"
 					/>
 				</svg>
-				<span v-if="file.title" class="woo-portal-download__title" v-html="file.title"/>
-				<span v-if="file.extension" class="woo-portal-download__extension" v-html="file.extension"/>
+				<span v-if="filteredDecree.title" class="woo-portal-download__title" v-html="filteredDecree.title"/>
+				<span v-if="filteredDecree.extension" class="woo-portal-download__extension" v-html="filteredDecree.extension"/>
 			</a>
 		</li>
-
 	</ul>
 </template>
 
@@ -87,9 +83,6 @@ const filteredDownloads = computed(() => {
 	padding-inline: 24px;
 	padding-block: 18px;
 	text-decoration: none;
-}
-
-.woo-portal-download__title {
 }
 
 .woo-portal-download__extension {

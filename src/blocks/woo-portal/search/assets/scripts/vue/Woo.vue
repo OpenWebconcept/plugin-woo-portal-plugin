@@ -257,27 +257,27 @@
 		<!-- Adres + Geografisch gebied -->
 		<div v-if="detail.Adres">
 			<h2 style="margin-bottom: -35px;">Adres</h2>
-			<div class="woo-portal-detail__columns">
-				<div class="woo-portal-detail__column">
-					<h3 v-if="detail.Adres && detail.Adres.Adres" class="woo-portal-detail__subtitle">Staat + Huisnummer</h3>
-					<div
-							v-if="detail.Adres && detail.Adres.Adres"
-							v-html="detail.Adres.Adres"
-					/>
-					<h3 v-if="detail.Adres && detail.Adres.Stad" class="woo-portal-detail__subtitle">Stad</h3>
-					<div
-							v-if="detail.Adres && detail.Adres.Stad"
-							v-html="detail.Adres.Stad"
-					/>
-				</div>
+		</div>
+		<div class="woo-portal-detail__columns">
+			<div class="woo-portal-detail__column">
+				<h3 v-if="detail.Adres && detail.Adres.Adres" class="woo-portal-detail__subtitle">Staat + Huisnummer</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Adres"
+						v-html="detail.Adres.Adres"
+				/>
+				<h3 v-if="detail.Adres && detail.Adres.Stad" class="woo-portal-detail__subtitle">Stad</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Stad"
+						v-html="detail.Adres.Stad"
+				/>
+			</div>
 
-				<div class="woo-portal-detail__column">
-					<h3 v-if="detail.Adres && detail.Adres.Postcode" class="woo-portal-detail__subtitle">Postcode</h3>
-					<div
-							v-if="detail.Adres && detail.Adres.Postcode"
-							v-html="detail.Adres.Postcode"
-					/>
-				</div>
+			<div class="woo-portal-detail__column">
+				<h3 v-if="detail.Adres && detail.Adres.Postcode" class="woo-portal-detail__subtitle">Postcode</h3>
+				<div
+						v-if="detail.Adres && detail.Adres.Postcode"
+						v-html="detail.Adres.Postcode"
+				/>
 			</div>
 		</div>
 

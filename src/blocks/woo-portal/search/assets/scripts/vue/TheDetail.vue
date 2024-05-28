@@ -381,10 +381,10 @@ export default {
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
-  color: #fff;
-  background: #000;
+  background: var(--owp-color-search-button);
   border: 0;
-  border-radius: 3px;
+  border-radius: var(--owp-search-radius);
+  color: var(--owp-color-search-button-text-color);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -392,19 +392,29 @@ export default {
   padding: 8px 16px;
   text-decoration: none;
   width: fit-content;
-	margin-bottom: 16px ;
+  margin-bottom: 16px ;
+  svg {
+    margin-right: 12px;
+    path {
+      fill: var(--owp-color-search-button-text-color);
+    }
+  }
   &:hover {
-    background: #626262;
+    background: var(--owp-color-search-button-tint);
   }
-  &:active, &:focus {
-    background: #626262;
+
+  &:focus, &:active {
+    background: var(--owp-color-search-button-shade);
   }
+
   &:disabled {
-    background: #ccc;
+    background: var(--owp-search-color-gray-2);
+    color: var(--owp-color-white);
+
+    svg path {
+      fill: var(--owp-color-white);
+    }
   }
-	svg {
-		margin-right: 12px;
-	}
 }
 
 .woo-portal-detail__columns {

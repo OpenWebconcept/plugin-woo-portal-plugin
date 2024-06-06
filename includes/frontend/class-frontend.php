@@ -55,12 +55,15 @@ class Frontend {
 	 */
 	public function register_custom_block_category( $categories ) {
 
-		return [
-			[
-				'slug'  => 'woo-portal-plugin',
-				'title' => __( 'WOO Portal Blocks', 'woo-portal-plugin' ),
-			],
-		];
+        $custom_block = array(
+            'slug'  => 'woo-portal-plugin',
+            'title' => __( 'WOO Portal Blocks', 'woo-portal-plugin' ),
+        );
+
+        // move our custom category to the front of the categories array.
+        array_unshift($categories, $custom_block);
+
+        return $categories;
 	}
 
 	/**

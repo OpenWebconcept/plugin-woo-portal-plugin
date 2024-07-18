@@ -1,4 +1,3 @@
-
 <template v-cloak>
   <div class="woo-portal-detail__content" v-if="!loading">
     <div>
@@ -12,7 +11,7 @@
     <!-- Partijen -->
     <div v-if="detail.Partijen">
       <h2 class="woo-portal-detail__subtitle">Partijen</h2>
-      <p v-html="parties(detail.Partijen)" />
+      <p v-html="parties(detail.Partijen)"/>
     </div>
 
     <div class="woo-portal-detail__columns">
@@ -37,12 +36,12 @@
     <!-- Samenvatting -->
     <div v-if="detail.Samenvatting">
       <h2 class="woo-portal-detail__subtitle">Samenvatting</h2>
-      <p v-html="detail.Samenvatting" />
+      <p v-html="detail.Samenvatting"/>
     </div>
 
     <div v-if="detail.Beschrijving">
       <h2 class="woo-portal-detail__subtitle">Inhoud</h2>
-      <div v-html="detail.Beschrijving" />
+      <div v-html="detail.Beschrijving"/>
     </div>
 
     <!-- Downloads -->
@@ -126,9 +125,7 @@
 </template>
 <script>
 export default {
-  components: {
-
-  },
+  components: {},
   props: {
     loading: {
       type: Boolean,
@@ -146,11 +143,11 @@ export default {
       default: ''
     },
   },
-	beforeMount() {
-		if ( this.detail.Onderwerp.length > 0 ) {
-			document.title += ' - ' + this.detail.Onderwerp;
-		}
-	},
+  beforeMount() {
+    if (this.detail.Onderwerp.length > 0) {
+      document.title += ' - ' + this.detail.Onderwerp;
+    }
+  },
   methods: {
     detailDownLoadMeta(download) {
       if (!download) {
@@ -181,7 +178,7 @@ export default {
 
       return array.join(" - ");
     },
-    dateReadable( date ) {
+    dateReadable(date) {
       let d = new Date(date);
       d = 'Invalid Date' != d ? d : new Date(date.split('-').reverse().join('-'))
       return d.toLocaleDateString("nl-NL", {
@@ -190,11 +187,11 @@ export default {
         day: "numeric"
       });
     },
-		themeNames(themes) {
-			return themes.map((obj) => {
-				return Object.values(obj).map(value => ' ' + value)
-			}).join(',');
-		},
+    themeNames(themes) {
+      return themes.map((obj) => {
+        return Object.values(obj).map(value => ' ' + value)
+      }).join(',');
+    },
     parties(parties) {
       return parties.map((obj) => Object.values(obj)).join(", ");
     },

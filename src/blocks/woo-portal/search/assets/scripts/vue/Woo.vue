@@ -45,7 +45,7 @@
     <!-- informatieverzoek-->
     <div v-if="detail.URL_informatieverzoek">
       <h2>Informatieverzoek</h2>
-      <span v-if="!detail.URL_informatieverzoek__is_upload">
+      <template v-if="!detail.URL_informatieverzoek__is_upload">
         <h3 class="woo-portal-detail__subtitle">URL informatieverzoek</h3>
         <a
             :href="detail.URL_informatieverzoek"
@@ -55,8 +55,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.8 11.2a.6.6 0 0 0 1 0l5.4-5.5a.6.6 0 1 0-1-.9l-5.4 5.5a.6.6 0 0 0 0 .9Zm2.9 0-2.4 2.4c-.7.7-1.9.6-2.7-.2-.7-.8-.9-2-.2-2.7l2.4-2.4a.6.6 0 1 0-1-.9L1.6 9.8c-1.2 1.2-1 3.2.2 4.5.7.6 1.5 1 2.5 1a2.8 2.8 0 0 0 2-.8L8.6 12a.6.6 0 0 0-1-.9Zm6.6-9.5C13 .4 11 .3 9.8 1.5L7.4 4a.6.6 0 0 0 1 .9l2.3-2.4c.7-.7 1.9-.6 2.7.2.8.8.9 2 .2 2.7l-2.4 2.4a.6.6 0 0 0 1 .9l2.3-2.4c1.2-1.2 1-3.2-.2-4.5Z" fill="#fff"/></svg>
           Bekijk informatieverzoek
         </a>
-      </span>
-      <span v-else>
+      </template>
+      <template v-else>
       <h3 class="woo-portal-detail__subtitle">Bijlage informatieverzoek</h3>
       <a
           :href="detail.URL_informatieverzoek"
@@ -72,7 +72,7 @@
             class="woo-portal-detail__download-title"
         />
       </a>
-      </span>
+      </template>
     </div>
     <!--        <button v-if="!detail.URL_informatieverzoek" class="btn" disabled>-->
     <!--          Bekijk informatieverzoek in PDF-->
@@ -81,7 +81,7 @@
     <!-- Inventariseatielijst -->
     <div v-if="detail.URL_inventarisatielijst">
       <h2>Inventarisatielijst</h2>
-      <span v-if="!detail.URL_inventarisatielijst__is_upload">
+      <template v-if="!detail.URL_inventarisatielijst__is_upload">
         <h3 class="woo-portal-detail__subtitle">URL Inventarisatielijst</h3>
         <a
             :href="detail.URL_inventarisatielijst"
@@ -91,8 +91,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.8 11.2a.6.6 0 0 0 1 0l5.4-5.5a.6.6 0 1 0-1-.9l-5.4 5.5a.6.6 0 0 0 0 .9Zm2.9 0-2.4 2.4c-.7.7-1.9.6-2.7-.2-.7-.8-.9-2-.2-2.7l2.4-2.4a.6.6 0 1 0-1-.9L1.6 9.8c-1.2 1.2-1 3.2.2 4.5.7.6 1.5 1 2.5 1a2.8 2.8 0 0 0 2-.8L8.6 12a.6.6 0 0 0-1-.9Zm6.6-9.5C13 .4 11 .3 9.8 1.5L7.4 4a.6.6 0 0 0 1 .9l2.3-2.4c.7-.7 1.9-.6 2.7.2.8.8.9 2 .2 2.7l-2.4 2.4a.6.6 0 0 0 1 .9l2.3-2.4c1.2-1.2 1-3.2-.2-4.5Z" fill="#fff"/></svg>
           Bekijk Inventarisatielijst
         </a>
-      </span>
-      <span v-else>
+      </template>
+      <template v-else>
         <h3 class="woo-portal-detail__subtitle">Bijlage Inventarisatielijst</h3>
         <a
             :href="detail.URL_inventarisatielijst"
@@ -108,7 +108,7 @@
               class="woo-portal-detail__download-title"
           />
         </a>
-      </span>
+      </template>
     </div>
     <!--      <button v-if="!detail.URL_inventarisatielijst" class="btn" disabled>-->
     <!--        Bekijk Inventarisatielijst in PDF-->
@@ -116,10 +116,9 @@
 
     <div v-if="detail.URL_besluit">
       <h2>Besluit</h2>
-      <span v-if="!detail.URL_besluit__is_upload">
+      <template v-if="!detail.URL_besluit__is_upload">
         <h3 class="woo-portal-detail__subtitle">URL Besluit</h3>
         <a
-            v-if="detail.URL_besluit"
             :href="detail.URL_besluit"
             class="btn"
             target="_blank"
@@ -127,8 +126,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.8 11.2a.6.6 0 0 0 1 0l5.4-5.5a.6.6 0 1 0-1-.9l-5.4 5.5a.6.6 0 0 0 0 .9Zm2.9 0-2.4 2.4c-.7.7-1.9.6-2.7-.2-.7-.8-.9-2-.2-2.7l2.4-2.4a.6.6 0 1 0-1-.9L1.6 9.8c-1.2 1.2-1 3.2.2 4.5.7.6 1.5 1 2.5 1a2.8 2.8 0 0 0 2-.8L8.6 12a.6.6 0 0 0-1-.9Zm6.6-9.5C13 .4 11 .3 9.8 1.5L7.4 4a.6.6 0 0 0 1 .9l2.3-2.4c.7-.7 1.9-.6 2.7.2.8.8.9 2 .2 2.7l-2.4 2.4a.6.6 0 0 0 1 .9l2.3-2.4c1.2-1.2 1-3.2-.2-4.5Z" fill="#fff"/></svg>
           Bekijk besluit
         </a>
-      </span>
-      <span v-else>
+      </template>
+      <template v-else>
         <h3 class="woo-portal-detail__subtitle">Bijlage Besluit</h3>
         <a
             :href="detail.URL_besluit"
@@ -144,7 +143,7 @@
               class="woo-portal-detail__download-title"
           />
         </a>
-      </span>
+      </template>
     </div>
 
     <!-- Postcode gebied + Geografisch gebied -->

@@ -295,6 +295,10 @@ function formatDate(date) {
 		background-color: var(--owp-color-primary-tint);
 	}
 
+	&--omgevingsplan-item {
+		background-color: var(--owp-color-tertiary);
+	}
+
 	.woo-portal-detail__aside & {
 		width: fit-content;
 	}

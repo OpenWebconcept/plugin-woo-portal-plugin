@@ -44,6 +44,11 @@
           :loading="loadingDetail"
           :detail="detail"
           :typeClass="typeClass(detail.type)" />
+      <omgevingsplan-component
+          v-if="detail.type ? detail.type.toLowerCase().match('omgevingsplan') : false"
+          :loading="loadingDetail"
+          :detail="detail"
+          :typeClass="typeClass(detail.type)" />
     </article>
   </section>
 </template>
@@ -51,10 +56,12 @@
 <script>
 import WooComponent from "./Woo.vue";
 import ConvenantComponent from "./Convenant.vue";
+import OmgevingsplanComponent from "./Omgevingsplan.vue";
 export default {
   components: {
     WooComponent,
-    ConvenantComponent
+    ConvenantComponent,
+    OmgevingsplanComponent
   },
   props: {
     restUrl: {
@@ -99,14 +106,13 @@ export default {
         )
             .then((response) => response.json())
             .then((data) => {
-              data.hasOwnProperty('WOOverzoeken') ?
-              this.detail = {
-                ...data.WOOverzoeken.pop(),
-                ...{type: "Woo-verzoek"}
-              } :  this.detail = {
-              ...data.Convenantenverzoeken.pop(),
-              ...{ type: "Convenant" }
-              };
+              if (data.hasOwnProperty('WOOverzoeken')) {
+                this.detail = { ...data.WOOverzoeken.pop(), ...{ type: "Woo-verzoek" } };
+              } else if (data.hasOwnProperty('Omgevingsplannen')) {
+                this.detail = { ...data.Omgevingsplannen.pop(), ...{ type: "Omgevingsplan" } };
+              } else {
+                this.detail = { ...data.Convenantenverzoeken.pop(), ...{ type: "Convenant" } };
+              }
               this.loadingDetail = false;
 
               sessionStorage.setItem(
@@ -142,6 +148,11 @@ export default {
 
 .woo-portal-result__type--woo-verzoek {
   background-color: var(--owp-color-primary);
+  display: block;
+}
+
+.woo-portal-result__type--omgevingsplan {
+  background-color: var(--owp-color-tertiary);
   display: block;
 }
 

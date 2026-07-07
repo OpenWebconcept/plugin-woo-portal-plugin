@@ -1,6 +1,7 @@
 <script setup>
 import { computed, defineEmits, defineProps, ref } from 'vue';
 import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
 const props = defineProps({
 	label: {

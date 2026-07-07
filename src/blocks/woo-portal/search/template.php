@@ -31,6 +31,12 @@ if ( ! preg_match( '/wp-json\//', $woo_portal_rest_uri ) ) {
 	$woo_portal_rest_uri = trailingslashit( $woo_portal_rest_uri ) . $woo_portal_rest_path;
 }
 
+// The post types enabled in the plugin settings. An empty list means all post types are shown.
+$woo_portal_post_types = get_option( 'woo_portal_enabled_post_types', [] );
+if ( ! is_array( $woo_portal_post_types ) ) {
+	$woo_portal_post_types = [];
+}
+
 ?>
 <div
 <?php
@@ -44,6 +50,7 @@ echo woo_portal_to_dom_attributes(
 		'data-placeholder' => esc_attr( $attributes['placeholder'] ?? '' ),
 		'data-image'       => esc_attr( $attributes['image'] ?? 0 ),
 		'data-per_page'    => esc_attr( $attributes['per_page'] ?? 10 ),
+		'data-post_types'  => wp_json_encode( array_values( $woo_portal_post_types ) ),
 	]
 );
 ?>

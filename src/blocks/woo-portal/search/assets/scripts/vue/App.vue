@@ -658,7 +658,7 @@ watch(
 	align-items: flex-start;
 	border: none;
 	display: flex;
-	//flex-direction: row;
+	flex-wrap: wrap;
 	gap: 8px;
 	margin-inline: 0;
 	padding: 0;

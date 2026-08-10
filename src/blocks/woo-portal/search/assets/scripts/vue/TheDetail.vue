@@ -35,12 +35,17 @@
         </svg>
       </div>
       <woo-component
-          v-if="detail.type ? detail.type.toLowerCase().match('woo') : false"
+          v-if="'woo' === detailVariant"
           :loading="loadingDetail"
           :detail="detail"
           :typeClass="typeClass(detail.type)"/>
       <convenant-component
-          v-if="detail.type ? detail.type.toLowerCase().match('convenant') : false"
+          v-if="'convenant' === detailVariant"
+          :loading="loadingDetail"
+          :detail="detail"
+          :typeClass="typeClass(detail.type)" />
+      <generic-detail
+          v-if="'generic' === detailVariant"
           :loading="loadingDetail"
           :detail="detail"
           :typeClass="typeClass(detail.type)" />
@@ -51,10 +56,12 @@
 <script>
 import WooComponent from "./Woo.vue";
 import ConvenantComponent from "./Convenant.vue";
+import GenericDetail from "./GenericDetail.vue";
 export default {
   components: {
     WooComponent,
-    ConvenantComponent
+    ConvenantComponent,
+    GenericDetail
   },
   props: {
     restUrl: {
@@ -74,6 +81,27 @@ export default {
       detail: [],
       loadingDetail: false,
     };
+  },
+  computed: {
+    /**
+     * Which detail component to render for the current item.
+     * Built-in types (woo, convenant) keep their dedicated components; any
+     * other type falls back to the generic renderer.
+     * @return {string|null}
+     */
+    detailVariant() {
+      if (!this.detail || !this.detail.type) {
+        return null;
+      }
+      const type = this.detail.type.toLowerCase();
+      if (type.match('woo')) {
+        return 'woo';
+      }
+      if (type.match('convenant')) {
+        return 'convenant';
+      }
+      return 'generic';
+    },
   },
   methods: {
     closeDetail() {
@@ -99,14 +127,14 @@ export default {
         )
             .then((response) => response.json())
             .then((data) => {
-              data.hasOwnProperty('WOOverzoeken') ?
-              this.detail = {
-                ...data.WOOverzoeken.pop(),
-                ...{type: "Woo-verzoek"}
-              } :  this.detail = {
-              ...data.Convenantenverzoeken.pop(),
-              ...{ type: "Convenant" }
-              };
+              if (data.hasOwnProperty('WOOverzoeken')) {
+                this.detail = { ...data.WOOverzoeken.pop(), ...{ type: "Woo-verzoek" } };
+              } else if (data.hasOwnProperty('Convenantenverzoeken')) {
+                this.detail = { ...data.Convenantenverzoeken.pop(), ...{ type: "Convenant" } };
+              } else if (data.hasOwnProperty('Detail')) {
+                // Generic contract: a single normalized Detail object provided by the endpoint.
+                this.detail = { ...data.Detail, ...{ type: data.Detail.Type || 'Detail' } };
+              }
               this.loadingDetail = false;
 
               sessionStorage.setItem(

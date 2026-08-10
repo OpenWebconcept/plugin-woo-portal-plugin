@@ -41,6 +41,27 @@ const props = defineProps({
 		type: String,
 		default: 10,
 	},
+	post_types: {
+		type: String,
+		default: '',
+	},
+});
+
+/**
+ * The post types enabled in the plugin settings (JSON encoded array).
+ * An empty list means no restriction: all post types are shown.
+ * @type {import('vue').ComputedRef<string[]>}
+ */
+const enabledPostTypes = computed(() => {
+	if (!props.post_types) {
+		return [];
+	}
+	try {
+		const parsed = JSON.parse(props.post_types);
+		return Array.isArray(parsed) ? parsed : [];
+	} catch (e) {
+		return [];
+	}
 });
 
 const error = ref(null);
@@ -103,6 +124,17 @@ async function getResults() {
     } );
   }
 
+	// Constrain results to the post types enabled in the plugin settings.
+	// When the visitor selects specific types those take precedence (already a
+	// subset of the enabled types); otherwise fall back to all enabled types.
+	if (enabledPostTypes.value.length > 0) {
+		const selectedTypes = [].concat(selectedFilters.value['type'] || []).filter(Boolean);
+		const effectiveTypes = selectedTypes.length > 0
+			? selectedTypes.filter((type) => enabledPostTypes.value.includes(type))
+			: enabledPostTypes.value;
+		url.searchParams.set('type', effectiveTypes.join(','));
+	}
+
 	// Append order & orderBy parameter.
 	if (!!order.value && 'desc,relevance' !== order.value) {
 		const splittedOrder = order.value.split(',');
@@ -138,9 +170,24 @@ async function getFilters() {
 	await fetch(url.toString())
 		.then((response) => response.json())
 		.then((response) => {
-			filters.value = response.Filters.sort((a, b) =>
-				a.label.localeCompare(b.label)
-			);
+			let groups = response.Filters;
+
+			// Only show the enabled post types in the post type filter.
+			if (enabledPostTypes.value.length > 0) {
+				groups = groups.map((group) => {
+					if ('type' !== group.param) {
+						return group;
+					}
+					return {
+						...group,
+						items: group.items.filter((item) =>
+							enabledPostTypes.value.includes(item.key)
+						),
+					};
+				});
+			}
+
+			filters.value = groups.sort((a, b) => a.label.localeCompare(b.label));
 			loadingFilters.value = false;
 		})
 		.catch((error) => {
@@ -611,7 +658,7 @@ watch(
 	align-items: flex-start;
 	border: none;
 	display: flex;
-	//flex-direction: row;
+	flex-wrap: wrap;
 	gap: 8px;
 	margin-inline: 0;
 	padding: 0;

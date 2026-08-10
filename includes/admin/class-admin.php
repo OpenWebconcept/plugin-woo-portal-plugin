@@ -28,6 +28,8 @@ class Admin {
 	public function __construct() {
 		$this->load_blocks();
 
+		new Settings();
+
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ], 99 );
 
 		if ( is_wp_version_compatible( '5.8' ) ) {
